@@ -1,11 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Image } from "semantic-ui-react";
+import { Button, Card, Image, Icon, Label } from "semantic-ui-react";
 import moment from "moment";
 
 function PostCard({
     post: { body, createdAt, id, username, likeCount, commentCount, likes }
 }) {
+    function likePost() {
+        console.log("Like Post...");
+    }
+
+    function commentOnPost() {
+        console.log("Commented...");
+    }
+
     return (
         <Card fluid>
             <Card.Content>
@@ -21,21 +29,22 @@ function PostCard({
                 <Card.Description>{body}</Card.Description>
             </Card.Content>
             <Card.Content extra>
-                <p>Buttons Here</p>
-                {/* <LikeButton user={user} post={{ id, likes, likeCount }} />
-                <MyPopup content="Comment on post">
-                    <Button labelPosition="right" as={Link} to={`/posts/${id}`}>
-                        <Button color="blue" basic>
-                            <Icon name="comments" />
-                        </Button>
-                        <Label basic color="blue" pointing="left">
-                            {commentCount}
-                        </Label>
+                <Button as="div" labelPosition="right" onClick={likePost}>
+                    <Button basic color="blue">
+                        <Icon name="heart" />
                     </Button>
-                </MyPopup>
-                {user && user.username === username && (
-                    <DeleteButton postId={id} />
-                )} */}
+                    <Label basic color="blue" pointing="left">
+                        {likeCount}
+                    </Label>
+                </Button>
+                <Button as="div" labelPosition="right" onClick={commentOnPost}>
+                    <Button basic color="teal">
+                        <Icon name="comments" />
+                    </Button>
+                    <Label basic color="teal" pointing="left">
+                        {commentCount}
+                    </Label>
+                </Button>
             </Card.Content>
         </Card>
     );
