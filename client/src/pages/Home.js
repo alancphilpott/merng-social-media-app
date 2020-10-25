@@ -6,6 +6,7 @@ import PostCard from "../components/PostCard";
 function Home() {
     const {
         loading,
+        _,
         data: { getPosts: posts }
     } = useQuery(FETCH_POSTS_QUERY);
 
