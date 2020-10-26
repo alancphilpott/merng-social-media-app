@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Form, Button } from "semantic-ui-react";
 import { gql, useMutation } from "@apollo/client";
 
-function Register(props) {
-    const [errors, setErrors] = useState({});
+import { useForm } from "../util/hooks";
 
-    const [values, setValues] = useState({
+function Register(props) {
+    const [errors, setErrors] = useState();
+
+    const { onChange, onSubmit, values } = useForm(registerUser, {
         username: "",
         email: "",
         password: "",
@@ -23,14 +25,9 @@ function Register(props) {
         variables: values
     });
 
-    const onChange = (event) => {
-        setValues({ ...values, [event.target.name]: event.target.value });
-    };
-
-    const onSubmit = (event) => {
-        event.preventDefault();
+    function registerUser() {
         addUser();
-    };
+    }
 
     return (
         <div className="form-container">
