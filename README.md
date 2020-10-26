@@ -23,16 +23,17 @@ module.exports = {
 }
 ```
 
-Run the usual.
+Run the usual command in both `/` and `/client` directories.
 
 ```bash
 npm install
 ```
 
-To start the application.
+To start the application, you'll require 2 terminal tabs.
 
 ```bash
-npm run serve
+npm run serve # server
+npm start # client
 ```
 
 See the scripts property inside package.json to view available scripts.
