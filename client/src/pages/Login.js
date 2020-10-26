@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Form, Button } from "semantic-ui-react";
 import { gql, useMutation } from "@apollo/client";
 
+import { useForm } from "../util/hooks";
+
 function Login(props) {
     const [errors, setErrors] = useState({});
 
-    const [values, setValues] = useState({
+    const { onChange, onSubmit, values } = useForm(loginUserCallback, {
         username: "",
         password: ""
     });
@@ -21,14 +23,9 @@ function Login(props) {
         variables: values
     });
 
-    const onChange = (event) => {
-        setValues({ ...values, [event.target.name]: event.target.value });
-    };
-
-    const onSubmit = (event) => {
-        event.preventDefault();
+    function loginUserCallback() {
         loginUser();
-    };
+    }
 
     return (
         <div className="form-container">
