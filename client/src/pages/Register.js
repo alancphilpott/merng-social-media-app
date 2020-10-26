@@ -5,7 +5,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useForm } from "../util/hooks";
 
 function Register(props) {
-    const [errors, setErrors] = useState();
+    const [errors, setErrors] = useState({});
 
     const { onChange, onSubmit, values } = useForm(registerUser, {
         username: "",
