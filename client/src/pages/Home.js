@@ -15,7 +15,11 @@ function Home() {
     return (
         <Grid columns={3}>
             <Grid.Row className="page-title">
-                <h1>Recent Posts</h1>
+                {user ? (
+                    <h1>Welcome {capitalizeFirstLetter(user.username)}</h1>
+                ) : (
+                    <h1>Welcome!</h1>
+                )}
             </Grid.Row>
             <Grid.Row>
                 {user && (
@@ -23,6 +27,8 @@ function Home() {
                         <PostForm />
                     </Grid.Column>
                 )}
+            </Grid.Row>
+            <Grid.Row>
                 {loading ? (
                     <h1>Loading Posts...</h1>
                 ) : (
@@ -36,6 +42,10 @@ function Home() {
             </Grid.Row>
         </Grid>
     );
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 export default Home;

@@ -53,7 +53,7 @@ function PostForm() {
                 </Form.Field>
             </Form>
             {error && (
-                <div className="ui error message" style={{ marginBottom: 20 }}>
+                <div className="ui error message">
                     <ul className="list">
                         <li>{error.graphQLErrors[0].extensions.errors.post}</li>
                     </ul>
