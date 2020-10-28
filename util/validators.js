@@ -50,7 +50,7 @@ module.exports.validateCreatePost = (body) => {
     const errors = {};
 
     if (body.trim() === "") {
-        errors.body = "Post Body Must Not Be Empty";
+        errors.post = "Post Body Must Not Be Empty";
     }
 
     return {
