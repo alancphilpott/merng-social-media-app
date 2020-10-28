@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Button, Form } from "semantic-ui-react";
 
 import { useForm } from "../util/hooks";
 
 function PostForm() {
+    const [errors, setErrors] = useState({});
+
     const { values, onChange, onSubmit } = useForm(createPostCallback, {
         body: ""
     });
@@ -14,7 +16,11 @@ function PostForm() {
         update(_, result) {
             console.log(result);
             values.body = "";
-        }
+        },
+        onError(err) {
+            setErrors(err.graphQLErrors[0].extensions.exception.errors);
+        },
+        variables: values
     });
 
     function createPostCallback() {
@@ -30,6 +36,7 @@ function PostForm() {
                     name="body"
                     onChange={onChange}
                     value={values.body}
+                    error={errors.body ? true : false}
                 />
                 <Button type="submit" color="blue">
                     Submit
