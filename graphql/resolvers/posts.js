@@ -32,9 +32,14 @@ module.exports = {
         createPost: async (_, { body }, context) => {
             const user = checkAuth(context);
 
-            const { valid, errors } = validateCreatePost(body);
-            if (!valid) {
-                throw new UserInputError("Errors", { errors });
+            // - Should be using this validation code, but commented out for something simpler atm"
+            // const { valid, errors } = validateCreatePost(body);
+            // if (!valid) {
+            //     throw new UserInputError("Errors", { errors });
+            // }
+
+            if (body.trim() === "") {
+                throw new UserInputError("Post Body Must Not Be Empty");
             }
 
             const newPost = new Post({
