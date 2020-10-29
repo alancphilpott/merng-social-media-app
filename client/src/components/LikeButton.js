@@ -31,8 +31,15 @@ function LikeButton({ user, post: { id, likes, likeCount } }) {
             <Icon name="heart" />
         </Button>
     );
-    return (
+    return user ? (
         <Button as="div" labelPosition="right" onClick={likePost}>
+            {likeButton}
+            <Label basic color="blue" pointing="left">
+                {likeCount}
+            </Label>
+        </Button>
+    ) : (
+        <Button as="div" labelPosition="right">
             {likeButton}
             <Label basic color="blue" pointing="left">
                 {likeCount}
