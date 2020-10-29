@@ -69,13 +69,15 @@ function SinglePost(props) {
                                     onClick={() =>
                                         console.log("Comment On Post...")
                                     }
-                                />
-                                <Button basic color="blue">
-                                    <Icon name="comments" />
+                                >
+                                    <Button basic color="blue">
+                                        <Icon name="comments" />
+                                    </Button>
+                                    <Label basic color="blue" pointing="left">
+                                        {commentCount}
+                                    </Label>
                                 </Button>
-                                <Label basic color="blue" pointing="left">
-                                    {commentCount}
-                                </Label>
+
                                 {user && user.username === username && (
                                     <DeleteButton
                                         postId={id}
