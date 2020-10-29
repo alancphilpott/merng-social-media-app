@@ -4,15 +4,12 @@ import { Button, Card, Image, Icon, Label } from "semantic-ui-react";
 import moment from "moment";
 
 import { AuthContext } from "../context/auth";
+import LikeButton from "./LikeButton";
 
 function PostCard({
     post: { body, createdAt, id, username, likeCount, commentCount, likes }
 }) {
     const { user } = useContext(AuthContext);
-
-    function likePost() {
-        console.log("Like Post...");
-    }
 
     return (
         <Card fluid>
@@ -29,16 +26,8 @@ function PostCard({
                 <Card.Description>{body}</Card.Description>
             </Card.Content>
             <Card.Content extra>
-                <Button as="div" labelPosition="right" onClick={likePost}>
-                    <Button basic color="blue">
-                        <Icon name="heart" />
-                    </Button>
-                    <Label basic color="blue" pointing="left">
-                        {likeCount}
-                    </Label>
-                </Button>
+                <LikeButton user={user} post={{ id, likes, likeCount }} />
                 <Button
-                    as="div"
                     labelPosition="right"
                     as={Link}
                     to={`/posts/${id}`}
@@ -53,7 +42,7 @@ function PostCard({
                 </Button>
                 {user && user.username === username && (
                     <Button
-                        class="ui icon button"
+                        className="ui icon button"
                         floated="right"
                         color="orange"
                         onClick={() => console.log("Delete Post")}
