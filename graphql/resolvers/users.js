@@ -25,6 +25,8 @@ module.exports = {
     Mutation: {
         // Logging In a User
         async login(_, { username, password }) {
+            username = username.toLowerCase();
+
             const { valid, errors } = validateLoginInput(username, password);
             if (!valid) {
                 throw new UserInputError("Errors", { errors });
@@ -54,6 +56,7 @@ module.exports = {
             _,
             { registerInput: { username, email, password, confirmPassword } }
         ) {
+            username = username.toLowerCase();
             // Validate User Data
             const { valid, errors } = validateRegisterInput(
                 username,
